@@ -1,0 +1,122 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+.hstack {
+  display: flex;
+  justify-content: space-between; /* Horizontal spacing between elements */
+  margin-bottom: 20px;
+}
+
+.hstack div {
+  margin-right: 20px;
+}
+
+#inventory {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 inventory slots per row */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#inventory div {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#market {
+  margin-top: 20px;
+}
+
+#market-heading {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns for resources */
+  gap: 20px;
+}
+
+.resource-card {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.resource-card p {
+  margin: 5px 0;
+}
+
+.resource-card button {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.resource-card button:hover {
+  background-color: #45a049;
+}
+
+.travel-status {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#buy-section,
+#sell-section {
+  margin-top: 20px;
+}
