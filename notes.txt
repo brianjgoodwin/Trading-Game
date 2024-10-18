@@ -1,0 +1,49 @@
+Project Overview:
+Name: Trading Game (no official name given yet)
+Concept: A browser-based trading simulation game where the player manages resources across multiple trading posts. The player buys and sells resources, travels between locations, and manages an inventory to maximize profits.
+Player Objective: Navigate between trading posts, purchase and sell resources at varying prices, and manage resources and time efficiently.
+Key Game Mechanics:
+Trading Posts:
+There are three trading posts: Forest, Desert, and Beach.
+Each post has different base prices for resources (e.g., wood is cheaper in the forest, more expensive in the desert).
+The player starts in the Forest and can travel to other posts with specified travel times.
+Resources:
+Resources include Wood, Stone, and Metal.
+Prices fluctuate daily by a small percentage (between -2% and +2%) to simulate market changes.
+Player Variables:
+The player has an initial balance of $100 and starts with an empty vehicle with 5 inventory slots.
+The player's current alocation, money, and date are displayed on the screen.
+The player’s location changes based on travel, and the player can buy and sell resources depending on availability.
+Inventory Management:
+The player’s vehicle has 5 inventory slots.
+Each slot displays the resource and the price the player paid for it.
+Players can buy and sell resources at trading posts, with dynamic buttons for each action.
+Travel:
+The player can travel between trading posts with defined travel times (e.g., 3 days from Forest to Beach).
+Upon travel, the player’s location updates, and the in-game time advances based on travel duration.
+Market and Prices:
+A market display shows the resources available at the current trading post, their prices, and buttons to buy/sell.
+The market dynamically updates based on the player’s location and fluctuates prices daily.
+The market also includes buttons for buying and selling resources directly tied to player actions.
+Technologies Used:
+HTML/CSS:
+HTML structures the UI, including sections for inventory, player status, market display, and travel options.
+CSS styles the layout, using Flexbox and Grid for responsive and clean presentation.
+JavaScript:
+Manages game logic, including player actions (buying/selling, traveling), updating the UI, and managing player inventory.
+JavaScript functions update the market display, travel options, and inventory dynamically based on player input and game state.
+Initialization functions ensure the game sets up correctly when the page loads.
+Current State of Development:
+The basic structure of the game (HTML, CSS, and JavaScript) is implemented.
+Key mechanics like buying/selling, traveling, and managing inventory are functional.
+The game initializes with the player starting at the Forest trading post, displaying available resources and travel options dynamically.
+The market and travel displays are updated based on the player’s location and actions.
+Debugging is ongoing to ensure the game initializes correctly, with all sections populating as expected when the game first loads.
+Additional Features Under Consideration:
+Seasonality for resources (e.g., food prices fluctuating based on the time of year).
+The option for the player to rent a warehouse tied to a specific location, acting as a second inventory slot.
+Potential upgrades or additional trading posts to expand gameplay complexity.
+Summary:
+This is a web-based trading simulation game designed using HTML, CSS, and JavaScript. The player interacts with a dynamic market, manages resources across different trading posts, and makes strategic decisions to maximize profits. The project is in the prototyping phase, focusing on refining the core gameplay mechanics, ensuring the game initializes correctly, and making the experience engaging through dynamic price changes and player interactions.
+
+This summary provides a comprehensive view of the project, covering both its mechanics and technological aspects. It serves as a useful reference for further development and interaction with an LLM, ensuring context is clear and consistent.
