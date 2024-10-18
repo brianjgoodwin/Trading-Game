@@ -8,7 +8,7 @@
     <!-- Link to external CSS file -->
   </head>
   <body>
-    <h1>The Wandering Merchant</h1>
+    <h1>Trading Game</h1>
 
     <!-- HStack for location, money, current day, and current date -->
     <div class="hstack">
@@ -16,7 +16,7 @@
       <div id="player-money">Money: $100</div>
       <div id="current-day">Day: 1</div>
       <!-- Display Day 1 initially -->
-      <!-- <div id="current-date">Date: 01 Jan 2024</div> -->
+      <div id="current-date">Date: 01 Jan 2024</div>
     </div>
 
     <h2>Inventory</h2>
@@ -77,6 +77,20 @@
     </table>
 
     <div class="travel-status" id="travel-status"></div>
+
+    <h2>Buy Resources</h2>
+    <div id="buy-section">
+      <button onclick="buyResource('wood')">Buy Wood</button>
+      <button onclick="buyResource('stone')">Buy Stone</button>
+      <button onclick="buyResource('metal')">Buy Metal</button>
+    </div>
+
+    <h2>Sell Resources</h2>
+    <div id="sell-section">
+      <button onclick="sellResource('wood')">Sell Wood</button>
+      <button onclick="sellResource('stone')">Sell Stone</button>
+      <button onclick="sellResource('metal')">Sell Metal</button>
+    </div>
 
     <script src="scripts.js"></script>
     <!-- Link to external JS file -->
