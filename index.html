@@ -41,9 +41,16 @@
       <thead>
         <tr>
           <th>Trading Post</th>
+          <th>Grain Price</th>
           <th>Wood Price</th>
-          <th>Stone Price</th>
-          <th>Metal Price</th>
+          <th>Iron Price</th>
+          <th>Wool Price</th>
+          <th>Leather Price</th>
+          <th>Spices Price</th>
+          <th>Wine Price</th>
+          <th>Precious Metals Price</th>
+          <th>Salt Price</th>
+          <th>Pottery Price</th>
           <th>Travel Time (days)</th>
           <th>Select</th>
         </tr>
@@ -51,25 +58,46 @@
       <tbody id="trading-posts-table">
         <tr>
           <td>Forest</td>
-          <td id="forest-wood-price">$5</td>
-          <td id="forest-stone-price">$10</td>
-          <td id="forest-metal-price">$15</td>
+          <td id="forest-grain-price">$5</td>
+          <td id="forest-wood-price">$6</td>
+          <td id="forest-iron-price">$12</td>
+          <td id="forest-wool-price">$8</td>
+          <td id="forest-leather-price">$10</td>
+          <td id="forest-spices-price">$25</td>
+          <td id="forest-wine-price">$8</td>
+          <td id="forest-preciousMetals-price">$20</td>
+          <td id="forest-salt-price">$12</td>
+          <td id="forest-pottery-price">$7</td>
           <td>3 days to Beach, 4 days to Desert</td>
           <td><button onclick="travelToPost('Forest')">Travel</button></td>
         </tr>
         <tr>
           <td>Desert</td>
-          <td id="desert-wood-price">$20</td>
-          <td id="desert-stone-price">$8</td>
-          <td id="desert-metal-price">$10</td>
+          <td id="desert-grain-price">$10</td>
+          <td id="desert-wood-price">$15</td>
+          <td id="desert-iron-price">$6</td>
+          <td id="desert-wool-price">$14</td>
+          <td id="desert-leather-price">$12</td>
+          <td id="desert-spices-price">$10</td>
+          <td id="desert-wine-price">$20</td>
+          <td id="desert-preciousMetals-price">$18</td>
+          <td id="desert-salt-price">$8</td>
+          <td id="desert-pottery-price">$12</td>
           <td>2 days to Beach, 4 days to Forest</td>
           <td><button onclick="travelToPost('Desert')">Travel</button></td>
         </tr>
         <tr>
           <td>Beach</td>
-          <td id="beach-wood-price">$10</td>
-          <td id="beach-stone-price">$12</td>
-          <td id="beach-metal-price">$8</td>
+          <td id="beach-grain-price">$8</td>
+          <td id="beach-wood-price">$12</td>
+          <td id="beach-iron-price">$18</td>
+          <td id="beach-wool-price">$10</td>
+          <td id="beach-leather-price">$15</td>
+          <td id="beach-spices-price">$30</td>
+          <td id="beach-wine-price">$12</td>
+          <td id="beach-preciousMetals-price">$15</td>
+          <td id="beach-salt-price">$5</td>
+          <td id="beach-pottery-price">$9</td>
           <td>2 days to Desert, 3 days to Forest</td>
           <td><button onclick="travelToPost('Beach')">Travel</button></td>
         </tr>
@@ -78,7 +106,7 @@
 
     <div class="travel-status" id="travel-status"></div>
 
-    <h2>Buy Resources</h2>
+    <!-- <h2>Buy Resources</h2>
     <div id="buy-section">
       <button onclick="buyResource('wood')">Buy Wood</button>
       <button onclick="buyResource('stone')">Buy Stone</button>
@@ -90,7 +118,7 @@
       <button onclick="sellResource('wood')">Sell Wood</button>
       <button onclick="sellResource('stone')">Sell Stone</button>
       <button onclick="sellResource('metal')">Sell Metal</button>
-    </div>
+    </div> -->
 
     <script src="scripts.js"></script>
     <!-- Link to external JS file -->

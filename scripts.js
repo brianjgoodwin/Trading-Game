@@ -14,9 +14,42 @@ let inventory = {
 
 // Prices for each trading post
 let prices = {
-  forest: { wood: 5, stone: 10, metal: 15 },
-  desert: { wood: 20, stone: 8, metal: 10 },
-  beach: { wood: 10, stone: 12, metal: 8 },
+  forest: {
+    grain: 5,
+    wood: 6,
+    iron: 12,
+    wool: 8,
+    leather: 10,
+    spices: 25,
+    wine: 8,
+    preciousMetals: 20,
+    salt: 12,
+    pottery: 7
+  },
+  desert: {
+    grain: 10,
+    wood: 15,
+    iron: 6,
+    wool: 14,
+    leather: 12,
+    spices: 10,
+    wine: 20,
+    preciousMetals: 18,
+    salt: 8,
+    pottery: 12
+  },
+  beach: {
+    grain: 8,
+    wood: 12,
+    iron: 18,
+    wool: 10,
+    leather: 15,
+    spices: 30,
+    wine: 12,
+    preciousMetals: 15,
+    salt: 5,
+    pottery: 9
+  }
 };
 
 // Travel times between trading posts
@@ -48,35 +81,28 @@ function updateUI() {
 
 // Function to update the price display in the table
 function displayPrices() {
-  document.getElementById(
-    "forest-wood-price"
-  ).textContent = `$${prices.forest.wood}`;
-  document.getElementById(
-    "forest-stone-price"
-  ).textContent = `$${prices.forest.stone}`;
-  document.getElementById(
-    "forest-metal-price"
-  ).textContent = `$${prices.forest.metal}`;
+  const tradingPosts = ["forest", "desert", "beach"];
+  const resources = [
+    "grain",
+    "wood",
+    "iron",
+    "wool",
+    "leather",
+    "spices",
+    "wine",
+    "preciousMetals",
+    "salt",
+    "pottery"
+  ];
 
-  document.getElementById(
-    "desert-wood-price"
-  ).textContent = `$${prices.desert.wood}`;
-  document.getElementById(
-    "desert-stone-price"
-  ).textContent = `$${prices.desert.stone}`;
-  document.getElementById(
-    "desert-metal-price"
-  ).textContent = `$${prices.desert.metal}`;
-
-  document.getElementById(
-    "beach-wood-price"
-  ).textContent = `$${prices.beach.wood}`;
-  document.getElementById(
-    "beach-stone-price"
-  ).textContent = `$${prices.beach.stone}`;
-  document.getElementById(
-    "beach-metal-price"
-  ).textContent = `$${prices.beach.metal}`;
+  tradingPosts.forEach((post) => {
+    resources.forEach((resource) => {
+      const priceElement = document.getElementById(`${post}-${resource}-price`);
+      if (priceElement) {
+        priceElement.textContent = `$${prices[post][resource]}`;
+      }
+    });
+  });
 }
 
 // Update prices by -2% to +2% each day
