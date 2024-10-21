@@ -36,11 +36,11 @@
       </div>
     </div>
 
-    <h2>Select a Trading Post</h2>
+    <h2>Select a City</h2>
     <table>
       <thead>
         <tr>
-          <th>Trading Post</th>
+          <th>City</th>
           <th>Grain Price</th>
           <th>Wood Price</th>
           <th>Iron Price</th>
@@ -55,7 +55,7 @@
           <th>Select</th>
         </tr>
       </thead>
-      <tbody id="trading-posts-table">
+      <tbody id="cities-table">
         <tr>
           <td>Forest</td>
           <td id="forest-grain-price">$5</td>
@@ -68,8 +68,8 @@
           <td id="forest-preciousMetals-price">$20</td>
           <td id="forest-salt-price">$12</td>
           <td id="forest-pottery-price">$7</td>
-          <td>3 days to Beach, 4 days to Desert</td>
-          <td><button onclick="travelToPost('Forest')">Travel</button></td>
+          <td id="forest-travel-time">You are here</td>
+          <td><button onclick="travelToCity('Forest')">Travel</button></td>
         </tr>
         <tr>
           <td>Desert</td>
@@ -83,8 +83,8 @@
           <td id="desert-preciousMetals-price">$18</td>
           <td id="desert-salt-price">$8</td>
           <td id="desert-pottery-price">$12</td>
-          <td>2 days to Beach, 4 days to Forest</td>
-          <td><button onclick="travelToPost('Desert')">Travel</button></td>
+          <td id="desert-travel-time"></td>
+          <td><button onclick="travelToCity('Desert')">Travel</button></td>
         </tr>
         <tr>
           <td>Beach</td>
@@ -98,8 +98,68 @@
           <td id="beach-preciousMetals-price">$15</td>
           <td id="beach-salt-price">$5</td>
           <td id="beach-pottery-price">$9</td>
-          <td>2 days to Desert, 3 days to Forest</td>
-          <td><button onclick="travelToPost('Beach')">Travel</button></td>
+          <td id="beach-travel-time"></td>
+          <td><button onclick="travelToCity('Beach')">Travel</button></td>
+        </tr>
+        <tr>
+          <td>Mountain</td>
+          <td id="mountain-grain-price">$12</td>
+          <td id="mountain-wood-price">$14</td>
+          <td id="mountain-iron-price">$8</td>
+          <td id="mountain-wool-price">$10</td>
+          <td id="mountain-leather-price">$18</td>
+          <td id="mountain-spices-price">$28</td>
+          <td id="mountain-wine-price">$15</td>
+          <td id="mountain-preciousMetals-price">$22</td>
+          <td id="mountain-salt-price">$11</td>
+          <td id="mountain-pottery-price">$16</td>
+          <td id="mountain-travel-time"></td>
+          <td><button onclick="travelToCity('Mountain')">Travel</button></td>
+        </tr>
+        <tr>
+          <td>Plains</td>
+          <td id="plains-grain-price">$9</td>
+          <td id="plains-wood-price">$8</td>
+          <td id="plains-iron-price">$14</td>
+          <td id="plains-wool-price">$9</td>
+          <td id="plains-leather-price">$11</td>
+          <td id="plains-spices-price">$26</td>
+          <td id="plains-wine-price">$14</td>
+          <td id="plains-preciousMetals-price">$19</td>
+          <td id="plains-salt-price">$10</td>
+          <td id="plains-pottery-price">$13</td>
+          <td id="plains-travel-time"></td>
+          <td><button onclick="travelToCity('Plains')">Travel</button></td>
+        </tr>
+        <tr>
+          <td>River</td>
+          <td id="river-grain-price">$6</td>
+          <td id="river-wood-price">$10</td>
+          <td id="river-iron-price">$16</td>
+          <td id="river-wool-price">$11</td>
+          <td id="river-leather-price">$9</td>
+          <td id="river-spices-price">$27</td>
+          <td id="river-wine-price">$10</td>
+          <td id="river-preciousMetals-price">$21</td>
+          <td id="river-salt-price">$9</td>
+          <td id="river-pottery-price">$12</td>
+          <td id="river-travel-time"></td>
+          <td><button onclick="travelToCity('River')">Travel</button></td>
+        </tr>
+        <tr>
+          <td>Valley</td>
+          <td id="valley-grain-price">$7</td>
+          <td id="valley-wood-price">$11</td>
+          <td id="valley-iron-price">$20</td>
+          <td id="valley-wool-price">$7</td>
+          <td id="valley-leather-price">$13</td>
+          <td id="valley-spices-price">$32</td>
+          <td id="valley-wine-price">$9</td>
+          <td id="valley-preciousMetals-price">$23</td>
+          <td id="valley-salt-price">$8</td>
+          <td id="valley-pottery-price">$11</td>
+          <td id="valley-travel-time"></td>
+          <td><button onclick="travelToCity('Valley')">Travel</button></td>
         </tr>
       </tbody>
     </table>
@@ -108,16 +168,30 @@
 
     <!-- <h2>Buy Resources</h2>
     <div id="buy-section">
+      <button onclick="buyResource('grain')">Buy Grain</button>
       <button onclick="buyResource('wood')">Buy Wood</button>
-      <button onclick="buyResource('stone')">Buy Stone</button>
-      <button onclick="buyResource('metal')">Buy Metal</button>
+      <button onclick="buyResource('iron')">Buy Iron</button>
+      <button onclick="buyResource('wool')">Buy Wool</button>
+      <button onclick="buyResource('leather')">Buy Leather</button>
+      <button onclick="buyResource('spices')">Buy Spices</button>
+      <button onclick="buyResource('wine')">Buy Wine</button>
+      <button onclick="buyResource('preciousMetals')">Buy Precious Metals</button>
+      <button onclick="buyResource('salt')">Buy Salt</button>
+      <button onclick="buyResource('pottery')">Buy Pottery</button>
     </div>
 
     <h2>Sell Resources</h2>
     <div id="sell-section">
+      <button onclick="sellResource('grain')">Sell Grain</button>
       <button onclick="sellResource('wood')">Sell Wood</button>
-      <button onclick="sellResource('stone')">Sell Stone</button>
-      <button onclick="sellResource('metal')">Sell Metal</button>
+      <button onclick="sellResource('iron')">Sell Iron</button>
+      <button onclick="sellResource('wool')">Sell Wool</button>
+      <button onclick="sellResource('leather')">Sell Leather</button>
+      <button onclick="sellResource('spices')">Sell Spices</button>
+      <button onclick="sellResource('wine')">Sell Wine</button>
+      <button onclick="sellResource('preciousMetals')">Sell Precious Metals</button>
+      <button onclick="sellResource('salt')">Sell Salt</button>
+      <button onclick="sellResource('pottery')">Sell Pottery</button>
     </div> -->
 
     <script src="scripts.js"></script>

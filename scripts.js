@@ -12,7 +12,7 @@ let inventory = {
   slot5: { item: null, price: null },
 };
 
-// Prices for each trading post
+// Prices for each city
 let prices = {
   forest: {
     grain: 5,
@@ -49,15 +49,88 @@ let prices = {
     preciousMetals: 15,
     salt: 5,
     pottery: 9
+  },
+  mountain: {
+    grain: 12,
+    wood: 14,
+    iron: 8,
+    wool: 10,
+    leather: 18,
+    spices: 28,
+    wine: 15,
+    preciousMetals: 22,
+    salt: 11,
+    pottery: 16
+  },
+  plains: {
+    grain: 9,
+    wood: 8,
+    iron: 14,
+    wool: 9,
+    leather: 11,
+    spices: 26,
+    wine: 14,
+    preciousMetals: 19,
+    salt: 10,
+    pottery: 13
+  },
+  river: {
+    grain: 6,
+    wood: 10,
+    iron: 16,
+    wool: 11,
+    leather: 9,
+    spices: 27,
+    wine: 10,
+    preciousMetals: 21,
+    salt: 9,
+    pottery: 12
+  },
+  valley: {
+    grain: 7,
+    wood: 11,
+    iron: 20,
+    wool: 7,
+    leather: 13,
+    spices: 32,
+    wine: 9,
+    preciousMetals: 23,
+    salt: 8,
+    pottery: 11
   }
 };
 
-// Travel times between trading posts
+// Travel times between cities
 let travelTimes = {
-  forest: { desert: 4, beach: 3 },
-  desert: { forest: 4, beach: 2 },
-  beach: { forest: 3, desert: 2 },
+  forest: { desert: 4, beach: 3, mountain: 5, plains: 6, river: 7, valley: 8 },
+  desert: { forest: 4, beach: 2, mountain: 6, plains: 5, river: 4, valley: 6 },
+  beach: { forest: 3, desert: 2, mountain: 4, plains: 6, river: 5, valley: 7 },
+  mountain: { forest: 5, desert: 6, beach: 4, plains: 3, river: 4, valley: 3 },
+  plains: { forest: 6, desert: 5, beach: 6, mountain: 3, river: 2, valley: 4 },
+  river: { forest: 7, desert: 4, beach: 5, mountain: 4, plains: 2, valley: 2 },
+  valley: { forest: 8, desert: 6, beach: 7, mountain: 3, plains: 4, river: 2 }
 };
+
+function updateTravelTimes() {
+  const cities = ["forest", "desert", "beach", "mountain", "plains", "river", "valley"];
+  
+  cities.forEach((city) => {
+    // Skip the player's current location as there's no travel time to itself
+    if (city.toLowerCase() !== playerLocation.toLowerCase()) {
+      const travelTime = travelTimes[playerLocation.toLowerCase()][city];
+      const travelTimeElement = document.getElementById(`${city}-travel-time`);
+      if (travelTimeElement) {
+        travelTimeElement.textContent = `${travelTime} days`;
+      }
+    } else {
+      // For the player's current location, show "You are here"
+      const travelTimeElement = document.getElementById(`${city}-travel-time`);
+      if (travelTimeElement) {
+        travelTimeElement.textContent = "You are here";
+      }
+    }
+  });
+}
 
 // Function to format date to "DD MMM YYYY"
 function formatDate(date) {
@@ -81,7 +154,7 @@ function updateUI() {
 
 // Function to update the price display in the table
 function displayPrices() {
-  const tradingPosts = ["forest", "desert", "beach"];
+  const cities = ["forest", "desert", "beach", "mountain", "plains", "river", "valley"];
   const resources = [
     "grain",
     "wood",
@@ -95,11 +168,11 @@ function displayPrices() {
     "pottery"
   ];
 
-  tradingPosts.forEach((post) => {
+  cities.forEach((city) => {
     resources.forEach((resource) => {
-      const priceElement = document.getElementById(`${post}-${resource}-price`);
+      const priceElement = document.getElementById(`${city}-${resource}-price`);
       if (priceElement) {
-        priceElement.textContent = `$${prices[post][resource]}`;
+        priceElement.textContent = `$${prices[city][resource]}`;
       }
     });
   });
@@ -107,11 +180,11 @@ function displayPrices() {
 
 // Update prices by -2% to +2% each day
 function updatePrices() {
-  for (let post in prices) {
-    for (let resource in prices[post]) {
+  for (let city in prices) {
+    for (let resource in prices[city]) {
       let changePercent = (Math.random() * 4 - 2) / 100; // Random between -2% and +2%
-      prices[post][resource] = +(
-        prices[post][resource] *
+      prices[city][resource] = +(
+        prices[city][resource] *
         (1 + changePercent)
       ).toFixed(2); // Round to 2 decimals
     }
@@ -120,26 +193,25 @@ function updatePrices() {
 }
 
 // Travel function with relative travel times
-function travelToPost(postName) {
-  if (playerLocation === postName) {
+function travelToCity(cityName) {
+  if (playerLocation === cityName) {
     document.getElementById(
       "travel-status"
-    ).textContent = `You're already at ${postName}!`;
+    ).textContent = `You're already at ${cityName}!`;
     return;
   }
 
   // Get travel time based on current location and destination
-  let travelDays =
-    travelTimes[playerLocation.toLowerCase()][postName.toLowerCase()];
+  let travelDays = travelTimes[playerLocation.toLowerCase()][cityName.toLowerCase()];
 
   // Update player location and increment the current day by the travel time
-  playerLocation = postName;
+  playerLocation = cityName;
   currentDay += travelDays;
   currentDate.setDate(currentDate.getDate() + travelDays); // Increment the current date
 
   document.getElementById(
     "travel-status"
-  ).textContent = `Traveling to ${postName} for ${travelDays} days...`;
+  ).textContent = `Traveling to ${cityName} for ${travelDays} days...`;
 
   updateUI(); // Update UI with new day, location, and date
 
@@ -147,10 +219,11 @@ function travelToPost(postName) {
   setTimeout(() => {
     document.getElementById(
       "travel-status"
-    ).textContent = `Arrived at ${postName}!`;
+    ).textContent = `Arrived at ${cityName}!`;
     updatePrices(); // Update prices daily
     updateMarketDisplay(); // Update the market display based on the new location
-  }, 1000); // Simulate the travel with a 1 second delay for now
+    updateTravelTimes(); // Call to refresh travel times after arriving
+  }, 1000); // Simulate the travel with a 1-second delay for now
 }
 
 // Function to update the market display based on the player's location
@@ -158,13 +231,13 @@ function updateMarketDisplay() {
   const marketHeading = document.getElementById("market-heading");
   const resourceGrid = document.getElementById("resource-grid");
 
-  // Set the heading to the current trading post dynamically
-  marketHeading.textContent = `${playerLocation} Trading Post`;
+  // Set the heading to the current city dynamically
+  marketHeading.textContent = `${playerLocation} Market`;
 
   // Clear any existing resources in the grid
   resourceGrid.innerHTML = "";
 
-  // Get the resources and prices for the current trading post
+  // Get the resources and prices for the current city
   const resources = prices[playerLocation.toLowerCase()];
 
   // Loop through the resources and create the grid items
@@ -204,7 +277,7 @@ function updateMarketDisplay() {
 // Function to buy resources
 function buyResource(resource) {
   if (!playerLocation) {
-    alert("You need to be at a trading post first!");
+    alert("You need to be at a city first!");
     return;
   }
 
@@ -232,7 +305,7 @@ function buyResource(resource) {
 // Function to sell resources
 function sellResource(resource) {
   if (!playerLocation) {
-    alert("You need to be at a trading post first!");
+    alert("You need to be at a city first!");
     return;
   }
 
@@ -273,3 +346,4 @@ updateUI();
 displayPrices();
 updateInventoryDisplay();
 updateMarketDisplay();
+updateTravelTimes();
