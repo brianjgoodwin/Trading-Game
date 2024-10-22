@@ -1,3 +1,4 @@
+/* General body styling */
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -9,10 +10,12 @@ h2 {
   color: #333;
 }
 
+/* Styling for the table */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  overflow-x: auto;
 }
 
 table,
@@ -27,9 +30,10 @@ td {
   text-align: center;
 }
 
+/* HStack styling for player stats */
 .hstack {
   display: flex;
-  justify-content: space-between; /* Horizontal spacing between elements */
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -37,6 +41,7 @@ td {
   margin-right: 20px;
 }
 
+/* Inventory grid styling */
 #inventory {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 inventory slots per row */
@@ -53,6 +58,7 @@ td {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Market section styling */
 #market {
   margin-top: 20px;
 }
@@ -96,12 +102,14 @@ td {
   background-color: #45a049;
 }
 
+/* Travel status styling */
 .travel-status {
   margin-top: 20px;
   font-size: 1.2em;
   color: #333;
 }
 
+/* General button styling */
 button {
   background-color: #4caf50;
   color: white;
@@ -116,7 +124,67 @@ button:hover {
   background-color: #45a049;
 }
 
+/* Buy and sell sections */
 #buy-section,
 #sell-section {
   margin-top: 20px;
+}
+
+/* Styling for Faction 1 cities */
+.faction1 {
+  background-color: #e3f2fd; /* Light blue background */
+  border-left: 5px solid #2196f3; /* Blue border on the left */
+}
+
+/* Styling for Faction 2 cities */
+.faction2 {
+  background-color: #fce4ec; /* Light pink background */
+  border-left: 5px solid #e91e63; /* Pink border on the left */
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the tooltip trigger */
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Styling for the neutral city row */
+.neutral-city {
+  background-color: #e0f7fa;
+}
+
+/* Tariff notification section styling */
+#tariff-notification {
+  background-color: #ffeb3b;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-weight: bold;
+  display: none; /* Initially hidden */
+}
+
+.hidden {
+  display: none;
 }
