@@ -85,7 +85,7 @@ function updatePrices() {
   displayPrices();
 }
 
-// Travel function with faction tariff system
+// Travel function with faction tariff system and daily travel cost
 function travelToCity(cityName) {
   if (playerLocation === cityName) {
     document.getElementById("travel-status").textContent = `You're already at ${cityName.charAt(0).toUpperCase() + cityName.slice(1)}!`;
@@ -95,13 +95,24 @@ function travelToCity(cityName) {
   let travelDays = travelTimes[playerLocation.toLowerCase()][cityName.toLowerCase()];
   let newFaction = cityFactions[cityName.toLowerCase()];
   let currentFaction = cityFactions[playerLocation.toLowerCase()];
+  const travelCostPerDay = 0.5; // Daily travel cost
+  let totalTravelCost = travelDays * travelCostPerDay;
 
-  // Check if a tariff applies
+  // Check if a tariff applies and add it to the total travel cost if necessary
   let tariffApplied = false;
   if (newFaction !== currentFaction && newFaction !== "neutral" && currentFaction !== "neutral") {
-    playerMoney -= tariffCost;
+    totalTravelCost += tariffCost;
     tariffApplied = true;
   }
+
+  // Check if the player has enough money for the total travel cost
+  if (playerMoney < totalTravelCost) {
+    document.getElementById("travel-status").textContent = `You don't have enough money to travel to ${cityName.charAt(0).toUpperCase() + cityName.slice(1)}. You need $${totalTravelCost}, but you only have $${playerMoney}.`;
+    return; // Stop the function if player doesn't have enough money
+  }
+
+  // Deduct the total travel cost from the player's money
+  playerMoney -= totalTravelCost;
 
   if (tariffApplied) {
     document.getElementById("tariff-notification").classList.remove("hidden");
@@ -116,7 +127,7 @@ function travelToCity(cityName) {
   currentDay += travelDays;
   currentDate.setDate(currentDate.getDate() + travelDays);
 
-  document.getElementById("travel-status").textContent = `Traveling to ${cityName.charAt(0).toUpperCase() + cityName.slice(1)} for ${travelDays} days...`;
+  document.getElementById("travel-status").textContent = `Traveling to ${cityName.charAt(0).toUpperCase() + cityName.slice(1)} for ${travelDays} days at a cost of $${totalTravelCost}...`;
 
   updateUI();
 
@@ -210,17 +221,39 @@ function sellResource(resource) {
   }
 }
 
+
 // Update the display for the inventory slots
 function updateInventoryDisplay() {
   for (let slot in inventory) {
-    const slotElement = document.getElementById(slot);
-    if (inventory[slot].item) {
-      slotElement.textContent = `${inventory[slot].item} - $${inventory[slot].price}`;
-    } else {
-      slotElement.textContent = `${slot.charAt(0).toUpperCase() + slot.slice(1)}: Empty`;
-    }
+      const slotElement = document.getElementById(slot);
+      slotElement.innerHTML = ''; // Clear any existing content in the slot
+
+      if (inventory[slot].item) {
+          // Create an image element for the inventory item
+          const img = document.createElement('img');
+          img.src = `${inventory[slot].item}.png`; // Use the item name to construct the file path
+          img.alt = inventory[slot].item;
+          img.style.width = '80%'; // Set the width of the image
+          img.style.height = 'auto'; // Maintain aspect ratio
+          img.style.borderRadius = '5px'; // Optional rounded corners
+
+          // Add the class for styling
+          img.classList.add('inventory-card-img');
+
+          // Append the image to the inventory slot
+          slotElement.appendChild(img);
+
+          // Add the item name and price below the image
+          const itemInfo = document.createElement('p');
+          itemInfo.textContent = `${inventory[slot].item.charAt(0).toUpperCase() + inventory[slot].item.slice(1)} - $${inventory[slot].price}`;
+          slotElement.appendChild(itemInfo);
+      } else {
+          // If the slot is empty, display the slot name and "Empty"
+          slotElement.textContent = `${slot.charAt(0).toUpperCase() + slot.slice(1)}: Empty`;
+      }
   }
 }
+
 
 // Function to update travel times based on player's location
 function updateTravelTimes() {

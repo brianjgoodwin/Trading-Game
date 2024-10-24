@@ -1,4 +1,5 @@
 /* General body styling */
+
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -45,17 +46,28 @@ td {
 #inventory {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 inventory slots per row */
-  gap: 10px;
+  gap: 20px; /* Increased gap for more space between cards */
   margin-top: 20px;
+  max-width: 800px; /* Set a max width to keep the grid from stretching too far */
+  margin-left: auto;
+  margin-right: auto; /* Centers the grid horizontally */
 }
 
+/* Inventory card styling */
 #inventory div {
   background-color: white;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 15px; /* Increased padding for larger cards */
+  border: 2px solid #ccc; /* Slightly thicker border for larger size */
   text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* More rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for depth */
+  width: 120px; /* Set a fixed width for larger cards */
+  height: 168px; /* Set a fixed height to maintain the 1:1.4 aspect ratio */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; /* Center content horizontally */
+  transition: transform 0.2s, box-shadow 0.2s; /* Add a hover effect */
 }
 
 /* Market section styling */
@@ -69,25 +81,74 @@ td {
   color: #555;
 }
 
+/* Resource card styles */
 #resource-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns for resources */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust width based on available space */
+  gap: 20px; /* Space between the cards */
+  justify-items: center; /* Center the cards */
 }
 
 .resource-card {
-  background-color: white;
+  width: calc(100px); /* Adjust this value as needed to control the card size */
+  height: calc(100px * 1.4); /* Aspect ratio 1:1.4 based on the width */
+  border-radius: 12px; /* Rounded corners */
+  border: 2px solid #ccc; /* Light gray border for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  background-color: white; /* Classic card color */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/* Hover effect for interactivity */
+.resource-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Slightly larger shadow */
+}
+
+/* Text inside the card */
 .resource-card p {
   margin: 5px 0;
+  font-size: 0.9em;
+  text-align: center;
 }
 
+/* Inventory card image styling */
+.inventory-card img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto 5px auto;
+  object-fit: contain; /* Ensure image fits within the card dimensions */
+}
+
+/* Inventory card styling */
+.inventory-card {
+  width: 100px; /* Adjust this based on your preferred card size */
+  height: 140px; /* 1:1.4 aspect ratio */
+  padding: 5px; /* Padding for content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden; /* Ensure content stays within the card */
+  box-sizing: border-box; /* Include padding in width/height calculations */
+}
+
+
+/* Card title (e.g., resource name) */
+.resource-card-title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* Button styling */
 .resource-card button {
   background-color: #4caf50;
   color: white;
@@ -101,6 +162,7 @@ td {
 .resource-card button:hover {
   background-color: #45a049;
 }
+
 
 /* Travel status styling */
 .travel-status {
